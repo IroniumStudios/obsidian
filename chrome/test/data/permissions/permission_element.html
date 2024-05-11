@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<script>
+  function waitForDismissEvent(id) {
+    (async () => {
+      await new Promise(resolve => {
+        document.getElementById(id).ondismiss = function (event) {
+          resolve();
+        };
+      });
+    })();
+    return true;
+  }
+
+  function waitForResolveEvent(id) {
+    (async () => {
+      await new Promise(resolve => {
+        document.getElementById(id).onresolve = function (event) {
+          resolve();
+        };
+      });
+    })();
+    return true;
+  }
+
+  function clickById(element_id) {
+    click(document.getElementById(element_id));
+  }
+
+  function click(element) {
+    element.click();
+  }
+</script>
+<body>
+  <permission tabindex="0" id="geolocation" type="geolocation">
+  <permission tabindex="0" id="microphone" type="microphone">
+  <permission tabindex="0" id="camera" type="camera">
+  <permission tabindex="0" id="invalid" type="invalid microphone">
+  <permission tabindex="0" id="camera-microphone" type="camera microphone">
+</body>
+</html>

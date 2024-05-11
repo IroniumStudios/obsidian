@@ -1,0 +1,62 @@
+<!-- #html_wrapper_imports_start
+import type {ComboboxGroup, ComboboxItem} from './customize_chrome_combobox.js';
+#html_wrapper_imports_end -->
+<button id="input" class="md-select"
+    role="combobox" tabindex="0"
+    aria-controls="dropdown"
+    aria-expanded="${this.expanded_}"
+    aria-haspopup="listbox"
+    aria-activedescendant="${this.getAriaActiveDescendant_()}"
+    @click="${this.onInputClick_}"
+    @focusout="${this.onInputFocusout_}">
+  <div>${this.getInputLabel_()}</div>
+</button>
+<div id="dropdownContainer">
+  <div id="dropdown" role="listbox" @click="${this.onDropdownClick_}"
+      @pointerdown="${this.onDropdownPointerdown_}"
+      @pointermove="${this.onDropdownPointermove_}"
+      @pointerover="${this.onDropdownPointerover_}">
+    <div id="defaultOption" class="item" role="option"
+        aria-selected="${this.getDefaultItemAriaSelected_()}">
+      ${this.defaultOptionLabel}
+    </div>
+    ${this.items.map((item, index) => html`
+      ${this.isGroup_(item) ? html`
+        <div class="group" role="group">
+          <label role="button" class="group-item"
+              data-index="${index}" @click="${this.onGroupClick_}"
+              aria-expanded="${this.getGroupAriaExpanded_(index)}">
+            ${item.label}
+            <iron-icon icon="${this.getGroupIcon_(index)}"
+                aria-hidden="true">
+            </iron-icon>
+          </label>
+          ${this.isGroupExpanded_(index) ? html`
+            ${(item as ComboboxGroup).items.map(subitem => html`
+              <div class="item" role="option" .value="${subitem.label}"
+                  aria-selected="${this.isItemSelected_(subitem)}">
+                <iron-icon icon="cr:check" aria-hidden="true"></iron-icon>
+                <span>${subitem.label}</span>
+              </div>
+            `)}
+          `: ''}
+        </div>
+      ` : ''}
+      ${!this.isGroup_(item) ? html`
+        <div class="item" role="option" .value="${item.label}"
+            aria-selected="${this.isItemSelected_(item)}">
+          ${(item as ComboboxItem).imagePath ? html`
+            <customize-chrome-check-mark-wrapper
+                ?checked="${this.isItemSelected_(item)}">
+              <img is="cr-auto-img"
+                  .autoSrc="${(item as ComboboxItem).imagePath}">
+            </customize-chrome-check-mark-wrapper>
+          `: ''}
+          <iron-icon icon="cr:check"
+              ?hidden="${!!(item as ComboboxItem).imagePath}"></iron-icon>
+          <span>${item.label}</span>
+        </div>
+      `: ''}
+    `)}
+  </div>
+</div>

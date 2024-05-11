@@ -1,0 +1,69 @@
+<style include="cr-shared-style">
+  cr-tabs {
+    --cr-tabs-font-size: inherit;
+    --cr-tabs-height: 40px;
+    margin-bottom: 24px;
+  }
+
+  #crsCerts {
+    padding-inline-end: var(--cr-section-padding);
+    padding-inline-start: var(--cr-section-indent-padding);
+  }
+
+  .cert-row {
+    display: flex;
+  }
+
+  .certs-export-button {
+    margin-left: auto;
+  }
+</style>
+
+<cr-tabs id="tabs" tab-names="[[tabNames_]]" selected="{{selectedTabIndex_}}">
+</cr-tabs>
+<iron-pages selected="[[selectedTabIndex_]]">
+
+  <div>Client Certificates
+    <if expr="is_win or is_macosx">
+      <div id="provisioned-client-certs">
+        From your administrator
+        <template is="dom-repeat" items="[[provisionedClientCerts_]]">
+          <div class="cr-row cr-padded-text cert-row">
+            [[item.displayName]] - [[item.sha256hashHex]]
+          </div>
+        </template>
+      </div>
+    </if>
+
+    <div id="platform-client-certs">
+      Client certificates from platform
+      <template is="dom-repeat" items="[[platformClientCerts_]]">
+        <div class="cr-row cr-padded-text cert-row">
+          [[item.displayName]] - [[item.sha256hashHex]]
+        </div>
+      </template>
+    </div>
+  </div>
+
+  <div>Local Certificates</div>
+
+  <div>
+    <cr-expand-button class="cr-row first"
+        expanded="{{crsTrustedCertsOpened_}}">
+      <div class="cert-row">
+        Trusted Certificates
+        <!-- TODO(crbug.com/40928765): wire up export button to export all
+          certs -->
+        <cr-button class="action-button certs-export-button">Export</cr-button>
+      </div>
+    </cr-expand-button>
+    <cr-collapse id="crsCerts" opened="[[crsTrustedCertsOpened_]]">
+      <template is="dom-repeat" items="[[crsCertificates_]]">
+        <certificate-entry-v2 display-name="[[item.displayName]]"
+            sha256hash-hex="[[item.sha256hashHex]]">
+        </certificate-entry-v2>
+      </template>
+    </cr-collapse>
+  </div>
+
+</iron-pages>

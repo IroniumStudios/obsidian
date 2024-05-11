@@ -1,0 +1,6 @@
+include_rules = [
+  "+components/subresource_filter/core",
+  "+components/subresource_filter/content/shared/browser",
+  "+content/public/browser",
+  "+content/public/test",
+]

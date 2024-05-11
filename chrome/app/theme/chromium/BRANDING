@@ -1,0 +1,10 @@
+COMPANY_FULLNAME=Damon Smith
+COMPANY_SHORTNAME=Damon Smith
+PRODUCT_FULLNAME=obsidian
+PRODUCT_SHORTNAME=obsidian
+PRODUCT_INSTALLER_FULLNAME=obsidian Installer
+PRODUCT_INSTALLER_SHORTNAME=obsidian Installer
+COPYRIGHT=Copyright @LASTCHANGE_YEAR@ Damon Smith, the chromium property is owned by the chromium authers, and any of its other assets.
+MAC_BUNDLE_ID=org.chromium.Chromium
+MAC_CREATOR_CODE=Cr24
+MAC_TEAM_ID=
