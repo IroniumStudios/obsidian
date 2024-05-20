@@ -1,16 +1,21 @@
-# ![Logo](chrome/app/theme/chromium/product_logo_64.png) obsidian
+# ![Logo](chrome/app/theme/chromium/product_logo_64.png) Chromium
 
-oobsidian is an open-source browser project that aims to build a safer, faster,
+Chromium is an open-source browser project that aims to build a safer, faster,
 and more stable way for all users to experience the web.
 
-if you would like to build obsidian, choose your platform and following chromiums building docs, which you can find here: https://www.chromium.org/developers/how-tos/get-the-code/
+The project's web site is https://www.chromium.org.
 
-if you do not have any familiarity with chromium at all it is recommended to Learn how to [Get Around the Chromium Source Code Directory
-Structure](https://www.chromium.org/developers/how-tos/getting-around-the-chrome-source-code), as obsidian uses the same structural DEPS and other prerequisites that chromium uses accept with changes related to what i implament but the base chromium parts will remain in tact, but there will be extra files and folders and also i may remove any un used files from the project so i will keep a documented change on that in the docs folder.
+To check out the source code locally, don't use `git clone`! Instead,
+follow [the instructions on how to get the code](docs/get_the_code.md).
+
+Documentation in the source is rooted in [docs/README.md](docs/README.md).
+
+Learn how to [Get Around the Chromium Source Code Directory
+Structure](https://www.chromium.org/developers/how-tos/getting-around-the-chrome-source-code).
 
 For historical reasons, there are some small top level directories. Now the
 guidance is that new top level directories are for product (e.g. Chrome,
 Android WebView, Ash). Even if these products have multiple executables, the
 code should be in subdirectories of the product.
 
-If you found a bug, please file it at https://damonicproducts.wixsite.com/smithcloud/support.
+If you found a bug, please file it at https://crbug.com/new.
