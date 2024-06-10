@@ -57,3 +57,12 @@ DIR_METADATA   text eol=lf
 
 # Skip Tricium by default on files in third_party.
 third_party/** -tricium
+
+[submodule "third_party/angle"]
+    path = third_party/angle
+    url = https://path-to-angle-repo
+    ignore = all
+[submodule "third_party/catapult"]
+    path = third_party/catapult
+    url = https://path-to-catapult-repo
+    ignore = all
